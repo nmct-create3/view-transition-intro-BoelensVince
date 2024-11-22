@@ -1,72 +1,77 @@
-:root {
-    --color-purple: oklch(0.44 0.23 311.11);
-    --color-pink: oklch(0.66 0.26 16.42);
-    --color-yellow: oklch(0.84 0.2 86.18);
-    --color-ocean: oklch(0.7 0.25 151.84);
-}
-
-/* reset */
-
-* {
-    box-sizing: border-box;
-}
-
-/* global page styles */
-
-html {
-    font-size: 125%;
-    font-family: "Nunito", sans-serif;
-    /* smooth font rendering */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
+/* General Styles */
 body {
     margin: 0;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    overflow: hidden;
 }
 
-svg,
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+/* Grid Container */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    width: 80%;
+    height: 80%;
+    transition: all 0.3s ease-in-out;
+    position: relative;
 }
 
-h1 {
-    font-size: 6rem;
-    margin: 0;
+/* Box Styles */
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0077cc;
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
 }
 
-/* objects */
-
-.list-reset {
-    list-style: none;
-    padding: 0;
+/* Hidden Boxes */
+.box.hidden {
+    opacity: 0; /* Hides the other boxes */
+    pointer-events: none; /* Prevent interaction */
 }
 
-/* components */
+/* Expanded State */
+.box.expanded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10; /* Bring expanded box to the top */
+    border-radius: 0; /* Remove rounded corners */
+    font-size: 3rem;
+}
 
-.nav__list {}
+/* Close Button */
+.box .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
 
-.nav__item {}
-
-.nav__link {}
-
-/* give the links a different background color */
-
-.page {}
-
-/* give the pages a different background color */
-
-.page--one {}
-
-.page--two {}
-
-.page--three {}
-
-.page--four {}
-
-.page__back {}
-
-.page__body,
-.page__back {}
+.box.expanded .close-button {
+    display: block; /* Show the close button in expanded state */
+}
